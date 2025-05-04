@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Form va Jadval</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 40px 20px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #0a0a0a;
+      color: #f0f0f0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center; /* YANGI QATOR: vertikal markazlash */
+      min-height: 100vh;
+    }
+
+
+    form {
+      background-color: #111;
+      padding: 30px 40px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.5),
+                  0 0 30px rgba(255, 0, 255, 0.3),
+                  0 0 45px rgba(0, 255, 128, 0.2);
+      width: 100%;
+      max-width: 400px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 50px;
+      transition: transform 0.3s ease;
+      
+    }
+
+    form:hover {
+      transform: scale(1.01);
+    }
+
+    input[type="text"],
+    input[type="number"],
+    select {
+      padding: 12px 16px;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      background-color: #222;
+      color: #fff;
+      box-shadow: 0 0 10px rgba(0,255,255,0.1);
+      transition: box-shadow 0.3s;
+    }
+
+    input:focus,
+    select:focus {
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.7);
+      outline: none;
+    }
+
+    input[type="submit"] {
+      background: linear-gradient(to right, #00f2fe, #4facfe, #f80759);
+      color: white;
+      padding: 14px;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s;
+    }
+
+    input[type="submit"]:hover {
+      background: linear-gradient(to right, #f80759, #00f2fe);
+      transform: scale(1.02);
+    }
+
+    table {
+      width: 100%;
+      max-width: 960px;
+      border-collapse: collapse;
+      background-color: #111;
+      color: #f0f0f0;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.3),
+                  0 0 30px rgba(255, 0, 255, 0.3);
+    }
+
+    th, td {
+      padding: 14px 18px;
+      text-align: center;
+      border-bottom: 1px solid #333;
+      font-size: 16px;
+    }
+
+    th {
+      background: linear-gradient(to right, #00f2fe, #4facfe);
+      color: #000;
+    }
+
+    tr:hover {
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    a {
+      margin: 0 6px;
+      text-decoration: none;
+      color: #00f2fe;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    a:hover {
+      color: #f80759;
+    }
+
+    @media (max-width: 768px) {
+      form, table {
+        width: 100%;
+      }
+
+      th, td {
+        font-size: 14px;
+        padding: 10px;
+      }
+
+      input[type="submit"] {
+        font-size: 14px;
+        padding: 10px;
+      }
+    }
+  </style>
+  </style>
+</head>
+<body>
+    <form method="post" action="/edit/{{ task[0] }}">
+        <input type="text" name="ism" value="{{ task[1] }}" required />
+        <input type="text" name="familiya" value="{{ task[2] }}" required />
+        <input type="text" name="lavozim" value="{{ task[3] }}" required />
+        <input type="number" name="yosh" value="{{ task[4] }}" required />
+        <select name="jinsi" required>
+          <option value="" disabled>Jinsingizni tanlang</option>
+          <option value="1" {% if task[5] == 1 %}selected{% endif %}>Erkak</option>
+          <option value="0" {% if task[5] == 0 %}selected{% endif %}>Ayol</option>
+        </select>
+        <input type="submit" name="t1" value="Yuborish" />
+      </form>
+      
+</body>
+</html>
